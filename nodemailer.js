@@ -14,12 +14,16 @@ app.use(bodyParser.urlencoded({extended: false}))
 // parse application/json
 app.use(bodyParser.json())
 
+const smtp_login = process.env.SMTP_LOGIN
+const smtp_password = process.env.SMTP_PASSWORD
+
+
 // create reusable transporter object using the default SMTP transport
 let transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
-        user: 'vilena27arturovna@gmail.com',
-        pass: 'Integrirovanie27',
+        user: smtp_login,
+        pass: smtp_password,
     },
 });
 
@@ -42,7 +46,9 @@ app.post('/sendMessage', async function (req, res) {
 
 })
 
-app.listen(3010, function () {
+const port = process.env.PORT || 3010
+
+app.listen(port, function () {
     console.log('Example app listening on port 3010')
 })
 
