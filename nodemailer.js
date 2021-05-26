@@ -6,7 +6,12 @@ const nodemailer = require("nodemailer");
 
 const bodyParser = require('body-parser')
 
-app.use(cors({ origin: "http://localhost:3000/portfolio" }))
+/*app.use(cors({ origin: "http://localhost:3000/portfolio" }))*/
+
+const corsOptions = {
+    origin: 'http://localhost:3000/portfolio',
+    optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+}
 
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({extended: false}))
@@ -33,7 +38,7 @@ app.get("/", function(request, response){
     response.send("<h2>Привет Express!</h2>");
 });
 
-app.post('/sendMessage', async function (req, res) {
+app.post('/sendMessage', cors(corsOptions), async function (req, res) {
 
     const {values} = req.body
 
