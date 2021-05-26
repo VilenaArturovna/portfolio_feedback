@@ -1,8 +1,5 @@
-// подключение express
 const express = require("express");
-// создаем объект приложения
 const app = express();
-// cors
 const cors = require('cors')
 
 const nodemailer = require("nodemailer");
