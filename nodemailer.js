@@ -27,6 +27,12 @@ let transporter = nodemailer.createTransport({
     },
 });
 
+app.get("/", function(request, response){
+
+    // отправляем ответ
+    response.send("<h2>Привет Express!</h2>");
+});
+
 app.post('/sendMessage', async function (req, res) {
 
     const {values} = req.body
