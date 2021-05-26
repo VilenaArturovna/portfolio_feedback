@@ -9,7 +9,7 @@ const bodyParser = require('body-parser')
 /*app.use(cors({ origin: "http://localhost:3000/portfolio" }))*/
 
 const corsOptions = {
-    origin: 'http://localhost:3000/portfolio',
+    origin: 'https://vilenaarturovna.github.io/portfolio/',
     optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
 }
 
@@ -32,7 +32,7 @@ let transporter = nodemailer.createTransport({
     },
 });
 
-app.get("/", function(request, response){
+app.get("/", function (request, response) {
 
     // отправляем ответ
     response.send("<h2>Привет Express!</h2>");
@@ -43,7 +43,7 @@ app.post('/sendMessage', cors(corsOptions), async function (req, res) {
     const {values} = req.body
 
     // send mail with defined transport object
-   await transporter.sendMail({
+    await transporter.sendMail({
         from: 'Vilena Portfolio Feedback',
         to: "vilena-forever@inbox.ru",
         subject: "HR wants me!!",
