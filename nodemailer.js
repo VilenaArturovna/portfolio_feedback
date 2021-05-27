@@ -16,15 +16,14 @@ let transporter = nodemailer.createTransport({
     },
 })
 
-/*app.use(cors({
-    origin: 'https://vilenaarturovna.github.io',
-    optionsSuccessStatus: 200
-}))*/
-
-app.use(cors({
+const corsOptions = {
     origin: 'http://localhost:3000',
-    optionsSuccessStatus: 200
-}))
+    optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+}
+
+
+//'https://vilenaarturovna.github.io'
+// 'http://localhost:3000'
 
 app.use(bodyParser.urlencoded({extended: false}))
 app.use(bodyParser.json())
@@ -33,7 +32,7 @@ app.get("/", function (req, res) {
     res.send("<h2>Привет Express!</h2>")
 })
 
-app.post('/sendMessage', async function (req, res) {
+app.post('/sendMessage', cors(corsOptions), async function (req, res) {
 
     const {values} = req.body
 
