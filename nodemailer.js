@@ -11,8 +11,8 @@ const port = process.env.PORT || 3010
 let transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
-        user: 'vilena27arturovna@gmail.com',
-        pass: 'Integrirovanie27',
+        user: smtp_login,
+        pass: smtp_password,
     },
 })
 
@@ -27,6 +27,11 @@ app.use(cors(corsOptions))
 
 app.use(bodyParser.urlencoded({extended: false}))
 app.use(bodyParser.json())
+
+app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', '*');
+    next();
+});
 
 app.get("/", function (req, res) {
     res.send("<h2>Привет Express!</h2>")
