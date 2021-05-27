@@ -16,17 +16,15 @@ let transporter = nodemailer.createTransport({
     },
 })
 
-app.use(cors())
-
-app.use(cors({
+/*app.use(cors({
     origin: 'https://vilenaarturovna.github.io',
     optionsSuccessStatus: 200
-}))
-
-/*app.use(cors({
-    origin: 'http://localhost:3000',
-    optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
 }))*/
+
+app.use(cors({
+    origin: 'http://localhost:3000',
+    optionsSuccessStatus: 200
+}))
 
 app.use(bodyParser.urlencoded({extended: false}))
 app.use(bodyParser.json())
