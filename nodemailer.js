@@ -23,7 +23,7 @@ const corsOptions = {
 
 
 //app.use(cors())
-app.use(cors(corsOptions))
+//app.use(cors(corsOptions))
 //'https://vilenaarturovna.github.io'
 // 'http://localhost:3000'
 
