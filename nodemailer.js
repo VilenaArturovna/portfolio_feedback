@@ -1,49 +1,42 @@
-const express = require("express");
-const app = express();
+const express = require("express")
+const app = express()
 const cors = require('cors')
-
-const nodemailer = require("nodemailer");
-
+const nodemailer = require("nodemailer")
 const bodyParser = require('body-parser')
 
-/*app.use(cors({ origin: "http://localhost:3000/portfolio" }))*/
+const smtp_login = process.env.SMTP_LOGIN || 'vilena27arturovna@gmail.com'
+const smtp_password = process.env.SMTP_PASSWORD || 'Integrirovanie27'
+const port = process.env.PORT || 3010
 
-const corsOptions = {
-    origin: 'https://vilenaarturovna.github.io/portfolio/',
-    optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
-}
-
-// parse application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({extended: false}))
-
-// parse application/json
-app.use(bodyParser.json())
-
-const smtp_login = process.env.SMTP_LOGIN
-const smtp_password = process.env.SMTP_PASSWORD
-
-
-// create reusable transporter object using the default SMTP transport
 let transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
         user: smtp_login,
         pass: smtp_password,
     },
-});
+})
 
-app.get("/", function (request, response) {
+/*app.use(cors({optionsSuccessStatus: 200}))*/
 
-    // отправляем ответ
-    response.send("<h2>Привет Express!</h2>");
-});
+app.use(cors({origin: 'https://vilenaarturovna.github.io/portfolio/'}))
 
-app.post('/sendMessage', cors(corsOptions), async function (req, res) {
+/*const corsOptions = {
+    origin: 'http://localhost:3000/portfolio',
+    optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+}*/
 
+app.use(bodyParser.urlencoded({extended: false}))
+app.use(bodyParser.json())
+
+app.get("/", function (req, res) {
+    res.send("<h2>Привет Express!</h2>")
+})
+
+app.post('/sendMessage', async function (req, res) {
+    
     const {values} = req.body
 
-    // send mail with defined transport object
-    await transporter.sendMail({
+    const info = await transporter.sendMail({
         from: 'Vilena Portfolio Feedback',
         to: "vilena-forever@inbox.ru",
         subject: "HR wants me!!",
@@ -53,11 +46,12 @@ app.post('/sendMessage', cors(corsOptions), async function (req, res) {
                     <div>Theme: ${values.theme}</div>
                     <div>Message: ${values.message}</div>
                </div>`,
-    });
+    })
+    
+    res.send(req.body)
 
+    console.log("Message sent: %s", info.messageId)
 })
-
-const port = process.env.PORT || 3010
 
 app.listen(port, function () {
     console.log('Example app listening on port 3010')
