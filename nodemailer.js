@@ -18,7 +18,7 @@ let transporter = nodemailer.createTransport({
 
 /*app.use(cors({optionsSuccessStatus: 200}))*/
 
-app.use(cors({origin: 'https://vilenaarturovna.github.io/portfolio/'}))
+app.use(cors({origin: 'https://vilenaarturovna.github.io/'}))
 
 /*const corsOptions = {
     origin: 'http://localhost:3000/portfolio',
