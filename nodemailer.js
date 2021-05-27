@@ -20,8 +20,8 @@ const corsOptions = {
     origin: 'http://localhost:3000',
     optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
 }
-
-app.use(cors(corsOptions))
+app.use(cors())
+//app.use(cors(corsOptions))
 //'https://vilenaarturovna.github.io'
 // 'http://localhost:3000'
 
@@ -41,7 +41,7 @@ app.get("/", function (req, res) {
 
 app.post('/sendMessage', async function (req, res) {
 
-    res.header('Access-Control-Allow-Origin', '*');
+    //res.header('Access-Control-Allow-Origin', '*');
     
     const {values} = req.body
 
