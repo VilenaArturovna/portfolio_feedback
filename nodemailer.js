@@ -28,10 +28,12 @@ app.use(cors(corsOptions))
 app.use(bodyParser.urlencoded({extended: false}))
 app.use(bodyParser.json())
 
+/*
 app.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', '*');
     next();
 });
+*/
 
 app.get("/", function (req, res) {
     res.send("<h2>Привет Express!</h2>")
@@ -39,6 +41,8 @@ app.get("/", function (req, res) {
 
 app.post('/sendMessage', async function (req, res) {
 
+    res.header('Access-Control-Allow-Origin', '*');
+    
     const {values} = req.body
 
     const info = await transporter.sendMail({
