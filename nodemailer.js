@@ -21,9 +21,8 @@ const corsOptions = {
     optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
 }
 
-
 //app.use(cors())
-//app.use(cors(corsOptions))
+app.use(cors(corsOptions))
 //'https://vilenaarturovna.github.io'
 // 'http://localhost:3000'
 
@@ -31,6 +30,7 @@ app.use(bodyParser.urlencoded({extended: false}))
 app.use(bodyParser.json())
 
 // Add headers
+/*
 app.use(function (req, res, next) {
 
     // Website you wish to allow to connect
@@ -49,6 +49,7 @@ app.use(function (req, res, next) {
     // Pass to next layer of middleware
     next();
 });
+*/
 
 app.get("/", function (req, res) {
     res.send("<h2>Привет Express!</h2>")
@@ -70,7 +71,7 @@ app.post('/sendMessage', async function (req, res) {
                </div>`,
     })
 
-    res.send(req.body)
+    res.send()
 
     console.log("Message sent: %s", info.messageId)
 })
