@@ -21,7 +21,7 @@ const corsOptions = {
     optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
 }
 
-
+app.use(cors(corsOptions))
 //'https://vilenaarturovna.github.io'
 // 'http://localhost:3000'
 
@@ -32,7 +32,7 @@ app.get("/", function (req, res) {
     res.send("<h2>Привет Express!</h2>")
 })
 
-app.post('/sendMessage', cors(corsOptions), async function (req, res) {
+app.post('/sendMessage', async function (req, res) {
 
     const {values} = req.body
 
