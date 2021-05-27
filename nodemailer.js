@@ -22,7 +22,7 @@ let transporter = nodemailer.createTransport({
 }*/
 
 
-app.use(cors())
+//app.use(cors())
 //app.use(cors(corsOptions))
 //'https://vilenaarturovna.github.io'
 // 'http://localhost:3000'
