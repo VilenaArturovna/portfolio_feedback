@@ -17,7 +17,7 @@ let transporter = nodemailer.createTransport({
 })
 
 app.use(cors({
-    origin: 'https://vilenaarturovna.github.io/portfolio'
+    origin: 'https://vilenaarturovna.github.io'
 }))
 
 app.use(bodyParser.urlencoded({extended: false}))
