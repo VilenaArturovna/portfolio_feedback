@@ -20,32 +20,21 @@ const corsOptions = {
     origin: 'http://localhost:3000',
     optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
 }
+app.use(cors(corsOptions))
 
 //app.use(cors())
-app.use(cors(corsOptions))
 //'https://vilenaarturovna.github.io'
-// 'http://localhost:3000'
+//'http://localhost:3000'
 
 app.use(bodyParser.urlencoded({extended: false}))
 app.use(bodyParser.json())
 
 // Add headers
 /*app.use(function (req, res, next) {
-
-    // Website you wish to allow to connect
     res.header('Access-Control-Allow-Origin', 'http://localhost:3000');
-
-    // Request methods you wish to allow
     res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
-
-    // Request headers you wish to allow
     res.header('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
-
-    // Set to true if you need the website to include cookies in the requests sent
-    // to the API (e.g. in case you use sessions)
     res.header('Access-Control-Allow-Credentials', true);
-
-    // Pass to next layer of middleware
     next();
 });*/
 
@@ -55,17 +44,10 @@ app.get("/", function (req, res) {
 
 app.post('/sendMessage', async function (req, res) {
 
-    res.set('Access-Control-Allow-Origin', 'http://localhost:3000');
-
-    // Request methods you wish to allow
+   /* res.set('Access-Control-Allow-Origin', 'http://localhost:3000');
     res.set('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
-
-    // Request headers you wish to allow
     res.set('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
-
-    // Set to true if you need the website to include cookies in the requests sent
-    // to the API (e.g. in case you use sessions)
-    res.set('Access-Control-Allow-Credentials', true);
+    res.set('Access-Control-Allow-Credentials', true);*/
 
     const {values} = req.body
 
