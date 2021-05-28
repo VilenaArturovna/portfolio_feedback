@@ -16,11 +16,13 @@ let transporter = nodemailer.createTransport({
     },
 })
 
-const corsOptions = {
-    origin: '*',
-    optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
-}
-app.use(cors(corsOptions))
+// const corsOptions = {
+//     origin: '*',
+//     optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+// }
+app.use(cors({
+    origin: 'https://vilenaarturovna.github.io'
+}))
 
 //app.use(cors())
 //'https://vilenaarturovna.github.io'
@@ -30,13 +32,13 @@ app.use(bodyParser.urlencoded({extended: false}))
 app.use(bodyParser.json())
 
 // Add headers
-app.use(function (req, res, next) {
+/*app.use(function (req, res, next) {
     res.header('Access-Control-Allow-Origin', '*');
     res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
     res.header('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
     res.header('Access-Control-Allow-Credentials', true);
     next();
-});
+});*/
 
 app.get("/", function (req, res) {
     res.send("<h2>Привет Express!</h2>")
